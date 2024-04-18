@@ -10,6 +10,7 @@ from pathlib import Path
 parser = argparse.ArgumentParser()
 
 ENVIRONMENT_YML = Path("environment.yml")
+README = Path("README.md")
 
 
 def replace_key(fname: Path, key: str, value: str):
@@ -26,6 +27,10 @@ def replace_key(fname: Path, key: str, value: str):
 if __name__ == "__main__":
     # Just placeholder for when I add more complexity to this
     args = parser.parse_args()
+
+    print("What title would you like to give the project?")
+    project_title = input()
+    replace_key(README, "PROJECT_TITLE", project_title)
 
     print("What name would like for your conda environment?")
     env_name = input()

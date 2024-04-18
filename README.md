@@ -1,1 +1,1 @@
-# ds-project-template
+# {{PROJECT_TITLE}}
