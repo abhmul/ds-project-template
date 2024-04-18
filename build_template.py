@@ -15,9 +15,9 @@ ENVIRONMENT_YML = Path("environment.yml")
 def replace_key(fname: Path, key: str, value: str):
     with open(fname, "r") as f:
         contents = f.read()
-    replace_str = "{{key}}"
+    replace_str = "{{" + key + "}}"
     assert replace_str in contents, f"Could not find {replace_str} in file {fname}."
-    contents = contents.replace("{{key}}", value)
+    contents = contents.replace(replace_str, value)
 
     with open(fname, "w") as f:
         f.write(contents)
