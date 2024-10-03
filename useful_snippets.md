@@ -8,5 +8,12 @@ To export the environment changes in an OS-agnostic form:
 mamba env export --from-history > environment.yml
 ```
 
+## Python
+
+Ignore a mypy error:
+
+```python
+# type: ignore[ERROR-NAME]
+```
 
 
