@@ -11,6 +11,9 @@ parser = argparse.ArgumentParser()
 
 ENVIRONMENT_YML = Path("environment.yml")
 README = Path("README.md")
+PYPROJECT_TOML = Path("pyproject.toml")
+
+ALL_FILES = [ENVIRONMENT_YML, README, PYPROJECT_TOML]
 
 
 def replace_key(fname: Path, key: str, value: str):
@@ -24,17 +27,28 @@ def replace_key(fname: Path, key: str, value: str):
         f.write(contents)
 
 
+def replace_key_in_files(files, key, value):
+    for file in files:
+        try:
+            replace_key(file, key, value)
+        except AssertionError as e:
+            print(f"Could not find {key} in file {file}.")
+
+
 if __name__ == "__main__":
     # Just placeholder for when I add more complexity to this
     args = parser.parse_args()
 
     print("What title would you like to give the project?")
     project_title = input()
-    replace_key(README, "PROJECT_TITLE", project_title)
+    replace_key_in_files(ALL_FILES, "PROJECT_TITLE", project_title)
 
     print("What name would like for your conda environment?")
     env_name = input()
-    replace_key(ENVIRONMENT_YML, "ENV_NAME", env_name)
+    replace_key_in_files(ALL_FILES, "ENV_NAME", env_name)
+
+    folder_name = Path(__file__).resolve().parent.name
+    replace_key_in_files(ALL_FILES, "FOLDER_NAME", folder_name)
 
     print(
         f"""
@@ -44,6 +58,6 @@ if __name__ == "__main__":
         pip install -e .
 
         Or copy-paste this command to run them together:
-        mamba env create -f environment.yml && mamba activate {env_name} && pip install -e .
+        mamaba env create -f environment.yml && mamba activate {env_name} && pip install -e .
         """
     )
