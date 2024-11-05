@@ -44,6 +44,6 @@ if __name__ == "__main__":
         pip install -e .
 
         Or copy-paste this command to run them together:
-        mamaba env create -f environment.yml && mamba activate {env_name} && pip install -e .
+        mamba env create -f environment.yml && mamba activate {env_name} && pip install -e .
         """
     )
