@@ -27,12 +27,13 @@ def replace_key(fname: Path, key: str, value: str):
         f.write(contents)
 
 
-def replace_key_in_files(files, key, value):
+def replace_key_in_files(files, key, value, verbose=True):
     for file in files:
         try:
             replace_key(file, key, value)
         except AssertionError as e:
-            print(f"Could not find {key} in file {file}.")
+            if verbose:
+                print(f"Could not find {key} in file {file}.")
 
 
 if __name__ == "__main__":
@@ -41,14 +42,14 @@ if __name__ == "__main__":
 
     print("What title would you like to give the project?")
     project_title = input()
-    replace_key_in_files(ALL_FILES, "PROJECT_TITLE", project_title)
+    replace_key_in_files(ALL_FILES, "PROJECT_TITLE", project_title, verbose=False)
 
     print("What name would like for your conda environment?")
     env_name = input()
-    replace_key_in_files(ALL_FILES, "ENV_NAME", env_name)
+    replace_key_in_files(ALL_FILES, "ENV_NAME", env_name, verbose=False)
 
     folder_name = Path(__file__).resolve().parent.name
-    replace_key_in_files(ALL_FILES, "FOLDER_NAME", folder_name)
+    replace_key_in_files(ALL_FILES, "FOLDER_NAME", folder_name, verbose=False)
 
     print(
         f"""
