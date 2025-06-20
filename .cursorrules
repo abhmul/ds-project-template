@@ -1,0 +1,83 @@
+{
+    "rules": {
+        "context_initialization": {
+            "description": "Starting point for each interaction",
+            "steps": [
+                "ALWAYS read `.notes/project_overview.md` and `.notes/task_list.md`",
+                "ALWAYS review recent entries in `.notes/meeting_notes.md` for context",
+                "ALWAYS check `.notes/directory_structure.md` to understand project layout"
+            ]
+        },
+        "operational_protocol": {
+            "description": "How to approach tasks",
+            "before_action": [
+                "Create a MECE task breakdown",
+                "Understand the data science workflow stage (data ingestion, processing, modeling, evaluation)",
+                "Check if similar work has been done previously (review logs and notebooks)"
+            ],
+            "code_changes": [
+                "Read relevant code sections before editing",
+                "Preserve existing functionality",
+                "Maintain type safety",
+                "Use the logging utilities in `src/log_utils.py` for all experiments",
+                "Follow the filepath management patterns in `src/params/`"
+            ],
+            "after_action": [
+                "ALWAYS update `.notes/meeting_notes.md` with a summary of work completed",
+                "Update `.notes/task_list.md` if task status changed",
+                "Document any new insights or decisions made"
+            ]
+        },
+        "safety_requirements": [
+            "NEVER break type safety",
+            "ALWAYS maintain proper error handling",
+            "ALWAYS document new code",
+            "NEVER hardcode file paths - use the params module",
+            "NEVER skip logging important experiments or model results",
+            "NEVER modify `.notes/` files without explicit user instruction",
+            "ALWAYS preserve reproducibility - use random seeds, version tracking",
+            "NEVER delete data or model artifacts without confirmation"
+        ],
+        "data_science_protocols": {
+            "description": "Specific guidelines for data science workflows",
+            "experiment_tracking": [
+                "Use `src/log_utils.py` for consistent logging",
+                "Document model hyperparameters and performance metrics",
+                "Save model artifacts to the `/models` directory",
+                "Record data preprocessing steps and feature engineering decisions"
+            ],
+            "reproducibility": [
+                "Use the requirements.txt for dependency management", 
+                "Set random seeds for all stochastic processes",
+                "Version datasets and track data lineage",
+                "Document computational environment and runtime"
+            ],
+            "code_organization": [
+                "Keep exploratory work in notebooks, production code in src/",
+                "Use the file_utils.py helpers for path management",
+                "Write reusable functions rather than copy-paste code",
+                "Follow the established project structure"
+            ]
+        },
+        "priorities": [
+            {
+                "source": ".notes/",
+                "weight": 1.0
+            }
+        ],
+        "modes": {
+            "base": {
+                "description": "For routine tasks like data exploration, simple feature engineering"
+            },
+            "enhanced": {
+                "description": "For complex problems like model architecture design, advanced analysis"
+            }
+        },
+        "project_directives": {
+            "name": "{{PROJECT_TITLE}}",
+            "ai_first": true,
+            "workflow_stage_awareness": true,
+            "reproducibility_focus": true
+        }
+    }
+}

@@ -1,0 +1,6 @@
+/data
+/.mypy_cache
+/models
+/results
+/tmp
+.git

@@ -12,8 +12,9 @@ parser = argparse.ArgumentParser()
 ENVIRONMENT_YML = Path("environment.yml")
 README = Path("README.md")
 PYPROJECT_TOML = Path("pyproject.toml")
+CURSOR_RULES = Path(".cursorrules")
 
-ALL_FILES = [ENVIRONMENT_YML, README, PYPROJECT_TOML]
+ALL_FILES = [ENVIRONMENT_YML, README, PYPROJECT_TOML, CURSOR_RULES]
 
 
 def replace_key(fname: Path, key: str, value: str):
@@ -44,7 +45,7 @@ if __name__ == "__main__":
     project_title = input()
     replace_key_in_files(ALL_FILES, "PROJECT_TITLE", project_title, verbose=False)
 
-    print("What name would like for your conda environment?")
+    print("What name would like for your virtual environment?")
     env_name = input()
     replace_key_in_files(ALL_FILES, "ENV_NAME", env_name, verbose=False)
 
@@ -55,10 +56,10 @@ if __name__ == "__main__":
         f"""
         To complete installation please run the following commands:
         mamba env create -f environment.yml
-        mamba activate {env_name}
+        mkvirtualenv {env_name}
         pip install -e .
 
         Or copy-paste this command to run them together:
-        mamba env create -f environment.yml && mamba activate {env_name} && pip install -e .
+        mkvirtualenv {env_name} && pip install -e .
         """
     )

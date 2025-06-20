@@ -21,9 +21,13 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Private :: Do Not Upload",
 ]
+dynamic = ["dependencies"]
 
 [project.urls]
 Repository = "https://github.com/abhmul/{{FOLDER_NAME}}.git"
 
 [tool.setuptools.packages]
 find = {}  # Scanning implicit namespaces is active by default
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}

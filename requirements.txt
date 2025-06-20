@@ -1,0 +1,8 @@
+black
+mypy
+pytest
+matplotlib
+scipy
+numpy
+pandas
+notebook
