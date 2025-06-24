@@ -1,0 +1,17 @@
+{
+    "mcpServers": {
+      "notebook_mcp": {
+        "url": "http://127.0.0.1:8080/mcp"
+      },
+      "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "env": {
+        "MEMORY_FILE_PATH": "{{FOLDER_NAME}}/memory.json"
+      }
+    }
+    }
+}

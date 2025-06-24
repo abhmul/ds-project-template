@@ -13,8 +13,9 @@ ENVIRONMENT_YML = Path("environment.yml")
 README = Path("README.md")
 PYPROJECT_TOML = Path("pyproject.toml")
 CURSOR_RULES = Path(".cursorrules")
+MCP = Path("mcp.json")
 
-ALL_FILES = [ENVIRONMENT_YML, README, PYPROJECT_TOML, CURSOR_RULES]
+ALL_FILES = [ENVIRONMENT_YML, README, PYPROJECT_TOML, CURSOR_RULES, MCP]
 
 
 def replace_key(fname: Path, key: str, value: str):
